@@ -1,10 +1,13 @@
 const path = require('path');
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   entry: './src/index.js',
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: "index.js",
+    path: path.resolve("dist"),
+    libraryTarget: "umd",
+    publicPath: `/static/dummy/1.0.0/`,
   },
   devtool: "eval-source-map",
 
@@ -14,6 +17,11 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(jpeg|jpg|png)$/,
+        use: [{
+          loader: 'file-loader'
+        }]
+      }, {
         test: /\.(js|ts)x?$/,
         exclude: /(node_modules|bower_components)/,
         use: {
@@ -24,5 +32,13 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  plugins: [
+    new CopyPlugin({
+      patterns: [
+        { from: "static", to: "static", noErrorOnMissing: true, },
+        { from: "locales", to: "locales", noErrorOnMissing: true, },
+      ],
+    }),
+  ],
 };
