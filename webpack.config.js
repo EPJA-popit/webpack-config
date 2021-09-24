@@ -1,5 +1,6 @@
 const path = require('path');
 const CopyPlugin = require("copy-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
@@ -19,7 +20,10 @@ module.exports = {
       {
         test: /\.(jpeg|jpg|png)$/,
         use: [{
-          loader: 'file-loader'
+          loader: 'file-loader',
+          options: {
+            publicPath: __dirname,
+          },
         }]
       }, {
         test: /\.(js|ts)x?$/,
@@ -36,9 +40,13 @@ module.exports = {
   plugins: [
     new CopyPlugin({
       patterns: [
-        { from: "static", to: "static", noErrorOnMissing: true, },
-        { from: "locales", to: "locales", noErrorOnMissing: true, },
+        { from: path.resolve(__dirname, "static"), to: "static", noErrorOnMissing: true, },
+        { from: path.resolve(__dirname, "locales"), to: "locales", noErrorOnMissing: true, },
       ],
     }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, "src/index.html"),
+      inject: true,
+    })
   ],
 };
