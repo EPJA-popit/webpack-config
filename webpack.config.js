@@ -44,9 +44,9 @@ module.exports = {
         { from: path.resolve(__dirname, "locales"), to: "locales", noErrorOnMissing: true, },
       ],
     }),
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, "src/index.html"),
-      inject: true,
-    })
+    // new HtmlWebpackPlugin({
+    //   template: path.resolve(__dirname, "src/index.html"),
+    //   inject: true,
+    // })
   ],
 };
