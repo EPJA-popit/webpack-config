@@ -38,12 +38,12 @@ module.exports = {
     ]
   },
   plugins: [
-    new CopyPlugin({
-      patterns: [
-        { from: path.resolve(__dirname, "static"), to: "static", noErrorOnMissing: true, },
-        { from: path.resolve(__dirname, "locales"), to: "locales", noErrorOnMissing: true, },
-      ],
-    }),
+    // new CopyPlugin({
+    //   patterns: [
+    //     { from: path.resolve(__dirname, "static"), to: "static", noErrorOnMissing: true, },
+    //     { from: path.resolve(__dirname, "locales"), to: "locales", noErrorOnMissing: true, },
+    //   ],
+    // }),
     // new HtmlWebpackPlugin({
     //   template: path.resolve(__dirname, "src/index.html"),
     //   inject: true,
